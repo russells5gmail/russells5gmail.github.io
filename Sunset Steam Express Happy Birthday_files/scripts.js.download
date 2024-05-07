@@ -1,0 +1,357 @@
+/**
+  * @desc Toggle Mobile Menu
+*/
+
+const body = document.querySelector('body');
+const burger = document.querySelector('#hamburger-container');
+
+function triggerMenu(){
+    body.classList.toggle('menu-active');
+}
+
+burger.addEventListener('click', triggerMenu);
+
+
+/**
+  * @desc Toggle Sticky Header
+*/
+
+let scrollpos = window.scrollY;
+const header = document.querySelector("header");
+const header_height = header.offsetHeight;
+const addSticky = () => header.classList.add('sticky');
+const removeSticky = () => header.classList.remove('sticky');
+
+window.addEventListener('scroll', function() { 
+  scrollpos = window.scrollY;
+
+  if (scrollpos >= header_height) {
+      addSticky();
+  } else {
+      removeSticky();
+  }
+});
+
+
+/**
+  * @desc Scroll Top
+*/
+
+var timeOut;
+
+function scrollToTop() {
+    if (document.body.scrollTop!=0 || document.documentElement.scrollTop!=0){
+        window.scrollBy(0,-50);
+        timeOut=setTimeout('scrollToTop()',10);
+    }
+    else clearTimeout(timeOut);
+}
+
+const toTop = document.querySelector('#back-to-top');
+
+toTop.addEventListener('click', scrollToTop);
+
+
+
+
+
+/**
+  * @desc Initialise Slick Sliders - Banner
+*/
+
+
+
+(function($){
+    
+    $('.banner-slides').slick({
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        dots: true,
+	autoplay: true,
+        variablewidth: 'true',
+	autoplaySpeed: slide_duration,
+        prevArrow: "<span class='icon icon-chevron-left prev slick-prev'></span>",
+        nextArrow: "<span class='icon icon-chevron-right next slick-next'></span>",
+
+    });
+
+})(jQuery);
+
+
+
+/**
+  * @desc Initialise Slick Sliders - Locomotives
+*/
+
+(function($){
+    
+    $('.loco-slides').slick({
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        dots: true,
+        arrows: false,
+	autoplay: false,
+        variablewidth: 'true',
+	autoplaySpeed: 8000,
+
+    });
+
+})(jQuery);
+
+
+
+
+
+/**
+  * @desc Initialise Slick Sliders - 
+*/
+
+
+(function($){
+    
+    var gridSlider = $('.grid-slider');
+    
+    if (gridSlider){
+    
+    function initialiseGridSlider(){
+        gridSlider.slick({
+        responsive: [         
+            {
+            breakpoint: 9999,
+            settings: "unslick"
+            },
+            {
+            breakpoint: 992,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                infinite: true,
+                dots: true,
+                arrows: false,
+            }
+            }
+        ]
+
+        });
+    }
+    
+    initialiseGridSlider();
+   
+    $( window ).resize(function() {
+        var gridSlider = document.querySelector('.grid-slider');
+        if (gridSlider){
+            if (gridSlider.classList.contains('slick-initialized')){
+//            console.log('slick is init');
+            } else {
+                initialiseGridSlider();
+            }
+
+        }
+    });
+    }
+})(jQuery);
+
+
+/**
+  * @desc Initialise Slick Sliders - Reviews Widget
+*/
+
+(function($){
+    
+    $('.reviews-slides').slick({
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        dots: true,
+	autoplay: false,
+        adaptiveHeight: true,
+        variablewidth: 'true',
+	autoplaySpeed: 8000,
+        prevArrow: "<span class='text-nav prev slick-prev'>PREVIOUS</span>",
+        nextArrow: "<span class='text-nav next slick-next'>NEXT</span>",
+    });
+
+})(jQuery);
+
+
+/**
+  * @desc Initialise Slick Sliders - VC Slider Widget
+*/
+
+(function($){
+    
+    $('.custom-slides.one').slick({
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        dots: true,
+	autoplay: false,
+        variablewidth: 'true',
+	autoplaySpeed: 8000,
+        prevArrow: "<span class='icon icon-chevron-left prev slick-prev'></span>",
+        nextArrow: "<span class='icon icon-chevron-right next slick-next'></span>",
+    });
+    
+        $('.custom-slides.two').slick({
+        infinite: true,
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        dots: true,
+	autoplay: false,
+        variablewidth: 'true',
+	autoplaySpeed: 8000,
+        prevArrow: "<span class='icon icon-chevron-left prev slick-prev'></span>",
+        nextArrow: "<span class='icon icon-chevron-right next slick-next'></span>",
+        responsive: [
+        {
+            breakpoint: 991,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+            }
+        }
+        ]
+    });
+
+
+})(jQuery);
+
+
+/**
+  * @desc Initialise Slick Sliders - Journey Page Slider
+*/
+
+(function($){
+    
+    $('#journey-gallery-slides').slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        dots: true,
+	autoplay: false,
+//        variablewidth: 'true',
+	autoplaySpeed: 8000,
+        arrows: false,
+    });
+
+})(jQuery);
+
+/**
+  * @desc Initialise Slick Sliders - Journey Page Popular Journeys Slider
+*/
+    (function($){
+    
+    $('.popular-journey-slides').slick({
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        dots: true,
+	autoplay: false,
+        variablewidth: 'true',
+        prevArrow: "",
+        nextArrow: "",
+        responsive: [
+        {
+            breakpoint: 980,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+            }
+        }
+    ]
+    });
+
+})(jQuery);
+
+
+
+/**
+  * @desc Initialise Slick Sliders - journey grid carousels
+*/
+    (function($){
+        
+    $('.journey-card-carousel').each(function(index, element) {
+    var slider = $(this);
+        slider.slick({
+        infinite: true,
+        slidesToShow: 1,
+        dots: true,
+	autoplay: false,
+        prevArrow: "",
+        nextArrow: "",
+        
+        });
+    });
+
+})(jQuery);
+
+
+
+
+/**
+  * @desc Initialise Slick Sliders - Locomotive Slider
+*/
+    (function($){
+        
+    $('.locomotives-slider').each(function(index, element) {
+    var slider = $(this);
+        slider.slick({
+        infinite: true,
+        slidesToShow: 1,
+        dots: true,
+	autoplay: false,
+        prevArrow: "",
+        nextArrow: "",
+        centerMode: true,
+        variableWidth: true,
+        useTransform: false,
+         responsive: [
+        {
+            breakpoint: 768,
+            settings: {
+                centerMode: false,
+                variableWidth: false,
+                slidesToShow: 1,
+                slidesToScroll: 1
+            }
+        }
+    ]
+        });
+    });
+    
+})(jQuery);
+
+
+
+/**
+  * @desc Accordions
+*/
+
+
+var classname = document.getElementsByClassName("accordion");
+
+var toggleAccordion = function() {
+   this.parentNode.classList.toggle('opened');
+};
+
+for (var i = 0; i < classname.length; i++) {
+    classname[i].querySelector('.accordion-title').addEventListener('click', toggleAccordion, false);
+}
+
+
+/**
+  * @desc Category Filter
+*/
+
+var categoryFilter = document.querySelector('#journal-filter');
+
+
+if (categoryFilter){
+function formSubmit(e){
+ this.submit();   
+}
+
+categoryFilter.addEventListener('change', formSubmit, false);
+}
